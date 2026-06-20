@@ -222,8 +222,3 @@ Response: `200 OK`
 ![Delete Customer](./screenshots/delete.png)
 
 ---
-
-## Notes
-
-- Firestore does not support partial/fuzzy text search natively, so `name` and `email` filters use exact matches.
-- Pagination uses Firestore's recommended cursor-based approach (`start_after`) rather than `offset`, since `offset` still reads and bills for skipped documents.
