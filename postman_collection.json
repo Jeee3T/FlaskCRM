@@ -1,0 +1,122 @@
+{
+  "info": {
+    "name": "Flask Firestore Customer API",
+    "description": "CRUD API for managing customers using Flask and Firebase Firestore.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "customer_id",
+      "value": "REPLACE_WITH_CUSTOMER_ID"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Prasanjeet Panda\",\n  \"email\": \"prasanjeet.panda@gmail.com\",\n  \"phone\": \"9876543210\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/customers",
+          "host": ["{{base_url}}"],
+          "path": ["customers"]
+        }
+      }
+    },
+    {
+      "name": "Get All Customers (with pagination)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/customers?page_size=10",
+          "host": ["{{base_url}}"],
+          "path": ["customers"],
+          "query": [
+            { "key": "page_size", "value": "10" },
+            { "key": "start_after", "value": "", "disabled": true },
+            { "key": "name", "value": "", "disabled": true },
+            { "key": "email", "value": "", "disabled": true }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Customer by Email",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/customers?email=prasanjeet.panda@gmail.com",
+          "host": ["{{base_url}}"],
+          "path": ["customers"],
+          "query": [
+            { "key": "email", "value": "prasanjeet.panda@gmail.com" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Customer by Name",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/customers?name=Prasanjeet Panda",
+          "host": ["{{base_url}}"],
+          "path": ["customers"],
+          "query": [
+            { "key": "name", "value": "Prasanjeet Panda" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Customer by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/customers/{{customer_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["customers", "{{customer_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Update Customer",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jeet Updated\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/customers/{{customer_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["customers", "{{customer_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Customer",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/customers/{{customer_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["customers", "{{customer_id}}"]
+        }
+      }
+    }
+  ]
+}
